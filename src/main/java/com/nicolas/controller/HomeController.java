@@ -112,6 +112,7 @@ public class HomeController {
 			vacante1.setDescripcion("Se solicita Ingeniero Civil para la construccion de Puentes");
 			vacante1.setFecha(sdf.parse("04-04-2023"));
 			vacante1.setSalario(4500d);
+			vacante1.setDestacado(1);
 			
 			Vacante vacante2=new Vacante();
 			vacante2.setId(2);
@@ -119,6 +120,7 @@ public class HomeController {
 			vacante2.setDescripcion("Se solicita Ingeniero Mecanico para la construccion de Motores");
 			vacante2.setFecha(sdf.parse("04-04-2023"));
 			vacante2.setSalario(1500d);
+			vacante2.setDestacado(0);
 			
 			Vacante vacante3=new Vacante();
 			vacante3.setId(3);
@@ -126,6 +128,7 @@ public class HomeController {
 			vacante3.setDescripcion("Se solicita Ingeniero de Software para la creacion de un nuevo sistema");
 			vacante3.setFecha(sdf.parse("04-04-2023"));
 			vacante3.setSalario(6500d);
+			vacante3.setDestacado(0);
 			
 			Vacante vacante4=new Vacante();
 			vacante4.setId(4);
@@ -133,6 +136,7 @@ public class HomeController {
 			vacante4.setDescripcion("Se solicita Ingeniero Nautico para la reparacion de motores de Navios");
 			vacante4.setFecha(sdf.parse("04-04-2023"));
 			vacante4.setSalario(2500d);
+			vacante4.setDestacado(1);
 			
 			lista.add(vacante1);
 			lista.add(vacante2);
