@@ -8,12 +8,15 @@
 	
 	<body>
 
+<img th:src="@{/image/logo.png}" width="136" height="136" >
+
 	<h1 class="text-info-emphasis">Vacantes disponibles</h1>
 	
 	
 			
 			<table class="table table-dark table-hover table-responsive">
   <tr>
+	<th>Logo</th>
     <th>Id</th>
     <th>Nombre</th>
     <th>Fecha</th>
@@ -22,6 +25,11 @@
     <th>Destacada</th>
   </tr>
   <tr th:each="vacante: ${vacantes}">
+	  
+	  <td>
+		  <img th:src="@{/image/{img} (img = ${vacante.imagenVacante}) }" width="136" height="136" >
+	  </td>
+	  
 	<td th:text="${vacante.id}"></td>
 	
     <td th:text="${vacante.nombre}"></td>
