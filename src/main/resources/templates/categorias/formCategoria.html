@@ -8,5 +8,16 @@
 	
 	<h1>Creacion de Categoria</h1>
 	
+		
+<form th:action="@{/categorias/save} " method="post">
+  <label for="fname">Nombre:</label><br>
+  <input type="text" id="fname" name="nombre" value=""><br>
+  <label for="lname">Descripcion:</label><br>
+  <input type="text" id="lname" name="descripcion" value=""><br><br>
+  <input type="submit" value="Guardar">
+</form> 
+
+	
+	
 	</body>
 </html>
