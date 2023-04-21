@@ -30,7 +30,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
 			vacante1.setFecha(sdf.parse("04-04-2023"));
 			vacante1.setSalario(3000d);
 			vacante1.setDestacado(1);
-			vacante1.setImagenVacante("logo1.png");
+			vacante1.setImagenVacante("empresa1.jpg");
 			
 			Vacante vacante2=new Vacante();
 			vacante2.setId(2);
@@ -39,7 +39,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
 			vacante2.setFecha(sdf.parse("04-04-2023"));
 			vacante2.setSalario(1500d);
 			vacante2.setDestacado(0);
-			vacante2.setImagenVacante("logo2.png");
+			vacante2.setImagenVacante("empresa2.jpg");
 			
 			Vacante vacante3=new Vacante();
 			vacante3.setId(3);
@@ -57,7 +57,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
 			vacante4.setFecha(sdf.parse("04-04-2023"));
 			vacante4.setSalario(2500d);
 			vacante4.setDestacado(1);
-			vacante4.setImagenVacante("logo4.png");
+			vacante4.setImagenVacante("empresa4.jpg");
 			
 			lista.add(vacante1);
 			lista.add(vacante2);
@@ -97,6 +97,15 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
 		}
 		
 		return null;
+	}
+
+
+
+	@Override
+	public void guardar(Vacante vacante) {
+		
+		lista.add(vacante);
+		
 	}
 
 	
