@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nicolas.Service.IVacantesService;
 import com.nicolas.model.Vacante;
@@ -29,7 +32,7 @@ public class VacantesController {
 	
 	
 	@GetMapping("/create")
-	public String crear() {
+	public String crear(Vacante vacante) {
 		
 		
 		
@@ -63,16 +66,23 @@ public class VacantesController {
 	}
 	*/
 	@PostMapping("/save")
-	public String guardar(Vacante vacante, Model model) 
+	public String guardar(Vacante vacante,BindingResult result, Model model,RedirectAttributes attributes) 
 	{
+		
+		if(result.hasErrors()) {
+			
+			for (ObjectError error: result.getAllErrors()){
+				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
+				}
+
+			return "vacantes/formVacante";
+		}
+		
 		
 		serviceVacantes.guardar(vacante);
 		
-		List <Vacante> lista = serviceVacantes.buscarTodas();
-	
-		model.addAttribute("vacantes",lista);
-		
-		return "vacantes/listVacantes";
+		attributes.addFlashAttribute("msg","Registro Guardado");
+		return "redirect:/vacantes/listaVacantes";
 		
 	}
 	
@@ -80,8 +90,6 @@ public class VacantesController {
 	@GetMapping("/listaVacantes")
 	public String mostrarVacantes(Vacante vacante, Model model) 
 	{
-		
-	
 		
 		List <Vacante> lista = serviceVacantes.buscarTodas();
 	
