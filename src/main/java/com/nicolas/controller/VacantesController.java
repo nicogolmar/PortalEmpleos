@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.nicolas.Service.ICategoriasService;
 import com.nicolas.Service.IVacantesService;
 import com.nicolas.model.Vacante;
 
@@ -29,11 +30,16 @@ public class VacantesController {
 	@Autowired
 	private IVacantesService serviceVacantes;
 	
+	@Autowired
+	private ICategoriasService serviceCategorias;
+	
 	
 	
 	@GetMapping("/create")
-	public String crear(Vacante vacante) {
+	public String crear(Vacante vacante,Model model) {
 		
+		
+		model.addAttribute("categorias",serviceCategorias.buscarTodas());
 		
 		
 		return "vacantes/formVacante";
@@ -75,6 +81,7 @@ public class VacantesController {
 				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
 				}
 
+			
 			return "vacantes/formVacante";
 		}
 		
@@ -94,7 +101,7 @@ public class VacantesController {
 		List <Vacante> lista = serviceVacantes.buscarTodas();
 	
 		model.addAttribute("vacantes",lista);
-		
+		System.out.println(vacante);
 		return "vacantes/listVacantes";
 		
 	}

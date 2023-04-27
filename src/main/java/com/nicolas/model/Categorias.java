@@ -6,11 +6,10 @@ public class Categorias {
 	private Integer id;
 	private String nombre;
 	private String descripcion;
-	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -25,14 +24,12 @@ public class Categorias {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "Categorias [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
 	}
 	
-
+	
 	
 	
 	

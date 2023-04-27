@@ -7,7 +7,7 @@ public class Vacante {
 	private Integer id;
 	private String nombre;
 	private String descripcion;
-	private String categoria;
+	private Categorias categoria;
 	private String estatus;
 	private Date fecha;
 	private Integer destacado;
@@ -65,8 +65,6 @@ public class Vacante {
 	}
 	
 	
-	
-	
 	public String getDetalles() {
 		return detalles;
 	}
@@ -79,11 +77,10 @@ public class Vacante {
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
 	}
-	
-	public String getCategoria() {
+	public Categorias getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categorias categoria) {
 		this.categoria = categoria;
 	}
 	@Override
@@ -93,6 +90,13 @@ public class Vacante {
 				+ ", imagenVacante=" + imagenVacante + ", detalles=" + detalles + "]";
 	}
 	
+
+	
+	
+	
+	
+	}
+	
 	
 
-}
+
