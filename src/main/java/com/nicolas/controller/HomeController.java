@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.nicolas.Service.IVacantesService;
 import com.nicolas.model.Vacante;
@@ -86,14 +87,15 @@ public class HomeController {
 		model.addAttribute("fecha", new Date());
 		return "home";
 	*/	
-		List <Vacante> lista = serviceVacantes.buscarTodas();
-		
-		
-		model.addAttribute("vacantes",lista);
-		
 	
 		
 		return "home";
+	}
+	
+	@ModelAttribute
+	public void setGenerico(Model model) {
+		model.addAttribute("vacantes",serviceVacantes.buscarDestacadas());
+		
 	}
 	
 	

@@ -2,11 +2,26 @@ package com.nicolas.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name="vacantes")
 public class Vacante {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
 	private String descripcion;
+	@OneToOne
+	@JoinColumn(name="idCategoria")
 	private Categorias categoria;
 	private String estatus;
 	private Date fecha;
@@ -14,6 +29,7 @@ public class Vacante {
 	private Double salario;
 	private String imagenVacante="sin-imagen.png";
 	private String detalles;
+	
 	
 	
 	public Integer getId() {
