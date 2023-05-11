@@ -116,6 +116,14 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
 		return null;
 	}
 
+
+
+	@Override
+	public void eliminar(Integer idVacante) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	

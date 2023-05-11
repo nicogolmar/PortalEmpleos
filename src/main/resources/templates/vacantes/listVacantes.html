@@ -31,11 +31,10 @@
           <h4 class="card-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
           <div class="card-body">
             <a class="btn btn-primary" href="/vacantes/create" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
-          	<div th:if="${msg !=null}" id="mensaje" class="alert alert-success alert-dismissible fade show" role="alert" th:text="${msg}" >
-				  
+			<div th:if="${msgDelete !=null}" id="mensaje" class="alert alert-danger alert-dismissible fade show" role="alert" th:text="${msgDelete}"/ >
+			
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+    			<span aria-hidden="true">&times;</span>
 			  </div>
           	 
             <hr>
@@ -61,8 +60,8 @@
 					  <span th:unless="${vacante.destacado == 1}">NO</span>
 					  </td>
                   <td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/editar/{id}  (id=${vacante.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/delete/{id}  (id=${vacante.id})}" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
                 </tr>
                                
@@ -99,10 +98,10 @@
 		});
 		
 	
- setTimeout(function(){
-    document.getElementById("mensaje").style.display = "none";
-  }, 1000);
-  document.getElementById("mensaje").style.display = "block";
+ 		setTimeout(function(){
+ 	   document.getElementById("mensaje").style.display = "none";
+ 		 }, 1000);
+ 			 document.getElementById("mensaje").style.display = "block";
 		
 	
 	</script>

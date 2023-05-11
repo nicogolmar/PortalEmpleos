@@ -1,5 +1,6 @@
 package com.nicolas.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,10 +8,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.nicolas.Service.IUsuariosService;
 import com.nicolas.Service.IVacantesService;
+import com.nicolas.model.Perfil;
+import com.nicolas.model.Usuario;
 import com.nicolas.model.Vacante;
 
 
@@ -19,7 +27,25 @@ public class HomeController {
 	
 	@Autowired
 	private IVacantesService serviceVacantes;
+
+	@Autowired
+	private IUsuariosService serviceUsuarios;
 	
+	
+	
+	
+	@GetMapping("/")
+	//La creacion de variable Model es para pasar a la visa datos
+	public String mostrarHome(Model model) {
+	/*	
+		model.addAttribute("mensaje","BIENVENIDOS AL PORTAL DE EMPLEOS");
+		model.addAttribute("fecha", new Date());
+		return "home";
+	*/	
+	
+		
+		return "home";
+	}
 	
 	
 	@GetMapping("/tabla")
@@ -76,21 +102,47 @@ public class HomeController {
 	}
 	
 	
-	
-	
-	
-	@GetMapping("/")
-	//La creacion de variable Model es para pasar a la visa datos
-	public String mostrarHome(Model model) {
-	/*	
-		model.addAttribute("mensaje","BIENVENIDOS AL PORTAL DE EMPLEOS");
-		model.addAttribute("fecha", new Date());
-		return "home";
-	*/	
-	
+	@GetMapping("/singup")
+	public String registrarse(Usuario usuario) {
 		
-		return "home";
+		return "usuarios/formRegistro";
+		
+		
 	}
+	
+	@PostMapping("/singup")
+	public String guardarRegistro(Usuario usuario,BindingResult result, RedirectAttributes attributes) {
+			
+		if(result.hasErrors()) {
+			
+			for (ObjectError error: result.getAllErrors()){
+				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
+				}
+
+			return "usuarios/formRegistro";
+		}
+		
+		usuario.setEstatus(1); // Activado por defecto
+		usuario.setFechaRegistro(new Date()); // Fecha de Registro, la fecha actual del servidor
+		
+		Perfil perfil = new Perfil();
+		perfil.setId(3); // Perfil USUARIO
+		List<Perfil> perfiles = new ArrayList<>();
+		perfiles.add(perfil);
+		usuario.setPerfiles(perfiles);
+		
+		
+		attributes.addFlashAttribute("msg","Registro Guardado");
+		serviceUsuarios.guardar(usuario);
+		
+		
+		return "redirect:/usuarios/index";
+		
+		
+	}
+	
+	
+	
 	
 	@ModelAttribute
 	public void setGenerico(Model model) {

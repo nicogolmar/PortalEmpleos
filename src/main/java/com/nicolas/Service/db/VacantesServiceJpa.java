@@ -52,4 +52,12 @@ public class VacantesServiceJpa implements IVacantesService {
 	
 	}
 
+	@Override
+	public void eliminar(Integer idVacante) {
+		
+		vacanteRepo.deleteById(idVacante);
+		
+		
+	}
+
 }

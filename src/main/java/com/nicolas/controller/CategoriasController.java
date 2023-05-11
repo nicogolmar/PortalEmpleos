@@ -8,12 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.nicolas.Service.ICategoriasService;
 import com.nicolas.model.Categorias;
+
 
 
 @RequestMapping("/categorias")
@@ -34,7 +35,7 @@ public class CategoriasController {
 		model.addAttribute("categorias",lista);
 		
 		
-	return "categorias/listCategorias";
+		return "categorias/listCategorias";
 	
 	
 	}
@@ -62,6 +63,27 @@ public class CategoriasController {
 		
 		attributes.addFlashAttribute("msg","Registro Guardado");
 		serviceCategorias.guardar(categoria);
+		return "redirect:/categorias/index";
+	}
+	
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") int idCategoria,Model model){
+		Categorias categoria = serviceCategorias.buscarPorId(idCategoria);
+		model.addAttribute("categorias", categoria);
+		serviceCategorias.guardar(categoria);
+		return "categorias/formCategoria";
+		
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") int idCategoria,RedirectAttributes attributes){
+		
+		serviceCategorias.eliminar(idCategoria);
+		
+		attributes.addFlashAttribute("msgDelete","Categoria Eliminada");
+		
+		
 		return "redirect:/categorias/index";
 	}
 	
