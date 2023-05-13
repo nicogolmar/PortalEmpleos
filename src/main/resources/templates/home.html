@@ -13,7 +13,7 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
   <body>
@@ -29,17 +29,18 @@
         <div class="container">
           <h3>Encuentra el trabajo que andas buscando.</h3>
           Puedes buscar por Nombre y categoría.
-          <form class="form-inline"  th:action="@{/search}" method="get" th:object="${search}">
-            <input type="text" th:field="*{nombre}" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Escriba una búsqueda">&nbsp;
-            <select th:field="*{categoria}"  class="custom-select custom-select mb-3">
+          <form class="form-inline" id="form"  th:action="@{/search}" method="get" th:object="${search}">
+            <input type="text" id="search" th:field="*{nombre}" class="form-control mb-3" name="search" placeholder="Escriba una búsqueda">&nbsp;
+            <select th:field="*{categoria}" id="categoria" name="categoria"  class="custom-select custom-select mb-3">
               <option th:value="${null}" selected>Seleccione una categoría</option>
               <option th:each="categoria : ${categorias}" 
               th:value="${categoria.id}"
               th:text="${categoria.nombre}"
-              >Ventas</option>
+              ></option>
              
             </select>&nbsp;
-            <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+          
+				<button type="submit" class="btn btn-primary mb-3">Buscar</button>
           </form>
         </div>
       </div>
@@ -76,5 +77,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+   <script th:src="@{/js/search.js}"></script>
+
+
   </body>
 </html>

@@ -151,16 +151,13 @@ public class HomeController {
 	@GetMapping("/search")
 	public String buscar(@ModelAttribute("search")  Vacante vacante , Model model) {
 		//buscador por una parte de la descripcion ( dinamico)
-				ExampleMatcher matcher=ExampleMatcher.
-						matching().
-						withMatcher("nombre", ExampleMatcher.GenericPropertyMatchers.contains());
+				ExampleMatcher matcher=ExampleMatcher
+						.matching()
+						.withMatcher("nombre", ExampleMatcher.GenericPropertyMatchers.contains());
 		System.out.println("buscando por " + vacante);
 		Example<Vacante> example =Example.of(vacante,matcher);
 		List<Vacante>lista=serviceVacantes.BuscarByExample(example);
 		model.addAttribute("vacantes",lista);
-		
-		
-		
 		return "home";
 	}
 	
