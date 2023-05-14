@@ -124,7 +124,7 @@ public class VacantesController {
 		
 		attributes.addFlashAttribute("msg","Registro Guardado");
 		
-		return "redirect:/vacantes/listaVacantes";
+		return "redirect:/vacantes/indexPaginate";
 		
 	}
 	
